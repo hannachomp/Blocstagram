@@ -44,18 +44,55 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
+// How many rows in a given section
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return self.images.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // #1 Cells are recycled once they scroll off the screen, but this helps prevent it from populating earlier images
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
+    
+    // Configure the cell..
+    //#2
+    
+    static NSInteger imageViewTag = 1234;
+    UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:imageViewTag];
+    
+    // #3
+    
+    if (!imageView) {
+        // This is a new cell, it doesn't have the image yet
+        imageView = [[UIImageView alloc] init];
+        
+        // Scale the cell to fit the view
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        
+        // Scale image to fit the cell
+        imageView.frame = cell.contentView.bounds;
+        
+        // #4 Width and height proportionally streched
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        
+    
+        imageView.tag = imageViewTag;
+        [cell.contentView addSubview:imageView];
+    }
+    
+    UIImage *image = self.images[indexPath.row];
+    imageView.image = image;
+    
+    return cell;
+}
+
+// Change the height of the Table Cell
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Return calculated height from the width
+    UIImage *image = self.images[indexPath.row];
+    return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
 }
 
 @end
