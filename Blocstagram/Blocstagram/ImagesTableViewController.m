@@ -95,4 +95,19 @@
     return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
 }
 
+#pragma mark - 27 Assignment
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Deleted row");
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        [_images removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
 @end
