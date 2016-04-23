@@ -45,6 +45,10 @@
 		B552FCB71CC88EE700B46F61 /* 10@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B552FC991CC88EE700B46F61 /* 10@3x.jpg */; };
 		B552FCB91CC88F1600B46F61 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B552FCB81CC88F1600B46F61 /* 1.jpg */; };
 		B552FCBC1CC8903900B46F61 /* ImagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B552FCBB1CC8903900B46F61 /* ImagesTableViewController.m */; };
+		B552FCBF1CCB22CB00B46F61 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = B552FCBE1CCB22CB00B46F61 /* User.m */; };
+		B552FCC21CCB23BA00B46F61 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = B552FCC11CCB23BA00B46F61 /* Media.m */; };
+		B552FCC51CCB250B00B46F61 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = B552FCC41CCB250B00B46F61 /* Comment.m */; };
+		B552FCCE1CCB269C00B46F61 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B552FCCD1CCB269C00B46F61 /* DataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +115,14 @@
 		B552FCB81CC88F1600B46F61 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = Images/1.jpg; sourceTree = "<group>"; };
 		B552FCBA1CC8903900B46F61 /* ImagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesTableViewController.h; sourceTree = "<group>"; };
 		B552FCBB1CC8903900B46F61 /* ImagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesTableViewController.m; sourceTree = "<group>"; };
+		B552FCBD1CCB22CB00B46F61 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		B552FCBE1CCB22CB00B46F61 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		B552FCC01CCB23BA00B46F61 /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
+		B552FCC11CCB23BA00B46F61 /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
+		B552FCC31CCB250B00B46F61 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		B552FCC41CCB250B00B46F61 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		B552FCCC1CCB269C00B46F61 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		B552FCCD1CCB269C00B46F61 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +181,14 @@
 				B552FC1A1CC87F2000B46F61 /* Info.plist */,
 				B552FCBA1CC8903900B46F61 /* ImagesTableViewController.h */,
 				B552FCBB1CC8903900B46F61 /* ImagesTableViewController.m */,
+				B552FCBD1CCB22CB00B46F61 /* User.h */,
+				B552FCBE1CCB22CB00B46F61 /* User.m */,
+				B552FCC01CCB23BA00B46F61 /* Media.h */,
+				B552FCC11CCB23BA00B46F61 /* Media.m */,
+				B552FCC31CCB250B00B46F61 /* Comment.h */,
+				B552FCC41CCB250B00B46F61 /* Comment.m */,
+				B552FCCC1CCB269C00B46F61 /* DataSource.h */,
+				B552FCCD1CCB269C00B46F61 /* DataSource.m */,
 				B552FC091CC87F2000B46F61 /* Supporting Files */,
 			);
 			path = Blocstagram;
@@ -398,7 +418,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B552FCBF1CCB22CB00B46F61 /* User.m in Sources */,
+				B552FCC51CCB250B00B46F61 /* Comment.m in Sources */,
+				B552FCC21CCB23BA00B46F61 /* Media.m in Sources */,
 				B552FCBC1CC8903900B46F61 /* ImagesTableViewController.m in Sources */,
+				B552FCCE1CCB269C00B46F61 /* DataSource.m in Sources */,
 				B552FC0E1CC87F2000B46F61 /* AppDelegate.m in Sources */,
 				B552FC0B1CC87F2000B46F61 /* main.m in Sources */,
 			);
