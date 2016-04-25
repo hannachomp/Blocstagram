@@ -7,6 +7,14 @@
 //
 
 #import "ImagesTableViewController.h"
+#import "DataSource.h"
+#import "Media.h"
+#import "User.h"
+#import "Comment.h"
+
+@interface ImagesTableViewController ()
+
+@end
 
 @implementation ImagesTableViewController
 
@@ -15,22 +23,12 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.images = [NSMutableArray array];
-    }
+        }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Populate array with images
-    for (int i = 1; i <= 10; i++) {
-        NSString *imageName = [NSString stringWithFormat:@"%d.jpg", i];
-        UIImage *image = [UIImage imageNamed: imageName];
-        if (image) {
-            [self.images addObject:image];
-        }
-    }
     
     // Add tableview roll
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"imageCell"];
@@ -47,7 +45,7 @@
 // How many rows in a given section
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.images.count;
+    return [DataSource sharedInstance].mediaItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -59,6 +57,8 @@
     //#2
     
     static NSInteger imageViewTag = 1234;
+    
+    
     UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:imageViewTag];
     
     // #3
@@ -81,9 +81,9 @@
         [cell.contentView addSubview:imageView];
     }
     
-    UIImage *image = self.images[indexPath.row];
-    imageView.image = image;
-    
+    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
+    imageView.image = item.image;
+
     return cell;
 }
 
@@ -91,7 +91,10 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Return calculated height from the width
-    UIImage *image = self.images[indexPath.row];
+    
+    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
+    UIImage *image = item.image;
+    
     return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
 }
 
@@ -101,13 +104,13 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Deleted row");
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  //  NSLog(@"Deleted row");
     
-    if (editingStyle == UITableViewCellEditingStyleDelete){
-        [_images removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-}
+    //if (editingStyle == UITableViewCellEditingStyleDelete){
+      //  [_images removeObjectAtIndex:indexPath.row];
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+   // }
+//}
 
 @end
