@@ -42,10 +42,16 @@
 
 #pragma mark - Table view data source
 
+// Assignment 28
+
+- (NSArray *)items {
+   return [DataSource sharedInstance].mediaItems;
+}
+
 // How many rows in a given section
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [DataSource sharedInstance].mediaItems.count;
+    return [self items].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,7 +87,7 @@
         [cell.contentView addSubview:imageView];
     }
     
-    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
+    Media *item = [self items][indexPath.row];
     imageView.image = item.image;
 
     return cell;
@@ -92,7 +98,7 @@
     
     // Return calculated height from the width
     
-    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
+    Media *item = [self items][indexPath.row];
     UIImage *image = item.image;
     
     return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
@@ -104,13 +110,13 @@
     return YES;
 }
 
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-  //  NSLog(@"Deleted row");
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {\
+    NSLog(@"Deleted row");
     
-    //if (editingStyle == UITableViewCellEditingStyleDelete){
+   // if (editingStyle == UITableViewCellEditingStyleDelete){
       //  [_images removeObjectAtIndex:indexPath.row];
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-   // }
+    //}
 //}
 
 @end
