@@ -11,6 +11,7 @@
 #import "Media.h"
 #import "User.h"
 #import "Comment.h"
+#import "MediaTableViewCell.h"
 
 @interface ImagesTableViewController ()
 
@@ -31,7 +32,7 @@
     [super viewDidLoad];
     
     // Add tableview roll
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"imageCell"];
+    [self.tableView registerClass:[MediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,39 +57,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // #1 Cells are recycled once they scroll off the screen, but this helps prevent it from populating earlier images
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
-    
-    // Configure the cell..
-    //#2
-    
-    static NSInteger imageViewTag = 1234;
-    
-    
-    UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:imageViewTag];
-    
-    // #3
-    
-    if (!imageView) {
-        // This is a new cell, it doesn't have the image yet
-        imageView = [[UIImageView alloc] init];
-        
-        // Scale the cell to fit the view
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        
-        // Scale image to fit the cell
-        imageView.frame = cell.contentView.bounds;
-        
-        // #4 Width and height proportionally streched
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        
-    
-        imageView.tag = imageViewTag;
-        [cell.contentView addSubview:imageView];
-    }
-    
-    Media *item = [self items][indexPath.row];
-    imageView.image = item.image;
+
+    MediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
+    cell.mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
 
     return cell;
 }
@@ -99,9 +70,8 @@
     // Return calculated height from the width
     
     Media *item = [self items][indexPath.row];
-    UIImage *image = item.image;
     
-    return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
+    return [MediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
 }
 
 #pragma mark - 27 Assignment
