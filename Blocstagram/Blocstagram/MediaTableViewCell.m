@@ -27,6 +27,12 @@ static UIFont *boldFont;
 static UIColor *usernameLabelGray;
 // Used for background color for comments
 static UIColor *commentLabelGray;
+
+// Assignment 29
+static UIColor *commentOrange;
+static UIColor *commentBlack;
+static NSMutableParagraphStyle *rightAlignParagraphStyle;
+
 // Used for tapable links
 static UIColor *linkColor;
 // Controls paragraph styles
@@ -73,13 +79,25 @@ static NSParagraphStyle *paragraphStyle;
     commentLabelGray = [UIColor colorWithRed:0.898 green:0.898 blue:0.898 alpha:1]; /*#e5e5e5*/
     linkColor = [UIColor colorWithRed:0.345 green:0.314 blue:0.427 alpha:1]; /*#58506d*/
     
+    // Assignment 29
+    commentOrange = [UIColor colorWithRed:255.0f/255.0f green:124.0f/255.0f blue:8.0f/255.0f alpha:1];
+     commentBlack = [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:1];
+    
+    
     NSMutableParagraphStyle *mutableParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     mutableParagraphStyle.headIndent = 20.0;
     mutableParagraphStyle.firstLineHeadIndent = 20.0;
     mutableParagraphStyle.tailIndent = -20.0;
     mutableParagraphStyle.paragraphSpacingBefore = 5;
     
+    // Assignment 29
+    mutableParagraphStyle.alignment = NSTextAlignmentLeft;
+    rightAlignParagraphStyle = [mutableParagraphStyle mutableCopy];
+    rightAlignParagraphStyle.alignment = NSTextAlignmentRight;
+
     paragraphStyle = mutableParagraphStyle;
+    
+   
 }
 
 #pragma mark - Attributing Strings
@@ -93,12 +111,13 @@ static NSParagraphStyle *paragraphStyle;
     NSString *baseString = [NSString stringWithFormat:@"%@ %@", self.mediaItem.user.userName, self.mediaItem.caption];
     
     // Make an attributed string from the dictionary items
-    NSMutableAttributedString *mutableUsernameAndCaptionString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : [lightFont fontWithSize:usernameFontSize], NSParagraphStyleAttributeName : paragraphStyle}];
+    NSMutableAttributedString *mutableUsernameAndCaptionString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : [lightFont fontWithSize:usernameFontSize], NSParagraphStyleAttributeName : paragraphStyle, NSKernAttributeName : @(4.0f)}];
     
     // Use range to select the username to be bold and purple which overrides the previous dictionary item for the username
     NSRange usernameRange = [baseString rangeOfString:self.mediaItem.user.userName];
     [mutableUsernameAndCaptionString addAttribute:NSFontAttributeName value:[boldFont fontWithSize:usernameFontSize] range:usernameRange];
     [mutableUsernameAndCaptionString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
+      [mutableUsernameAndCaptionString addAttribute:NSKernAttributeName value:@(0.0f)range:usernameRange];
     
     return mutableUsernameAndCaptionString;
     
@@ -109,19 +128,50 @@ static NSParagraphStyle *paragraphStyle;
     NSMutableAttributedString *commentString = [[NSMutableAttributedString alloc] init];
     
     // User a for loop to make all the comments
-    for (Comment *comment in self.mediaItem.comments) {
+    //for (Comment *comment in self.mediaItem.comments) {
+    
+for (int i = 0; i < self.mediaItem.comments.count; i++) {
+    Comment *comment = self.mediaItem.comments[i];
+    
+    NSParagraphStyle *commentParagraphStyle;
+    
+    //even
+    if (i % 2) {
+        commentParagraphStyle = rightAlignParagraphStyle;
+    } else {
+        //odd
+        commentParagraphStyle= paragraphStyle;
+    }
+    
+    
+    
         // Make a string that says username comment followed by a link break
         NSString *baseString = [NSString stringWithFormat:@"%@ %@\n", comment.from.userName, comment.text];
         
         // Make the attributed string with the username bold
-        NSMutableAttributedString *oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle}];
+        NSMutableAttributedString *oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : commentParagraphStyle}];
         
         NSRange usernameRange = [baseString rangeOfString:comment.from.userName];
         [oneCommentString addAttribute:NSFontAttributeName value:boldFont range:usernameRange];
         [oneCommentString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
+    
+    NSString *newCommentString = [baseString substringFromIndex:usernameRange.length];
+    NSRange commentRange = [baseString rangeOfString:newCommentString];
+    
+   //Assignment 29
+    UIColor *commentColor;
+    if (i == 0) {
+        commentColor = commentOrange;
+    } else {
+        commentColor =  commentBlack;
+    }
+    
+     [oneCommentString addAttribute:NSForegroundColorAttributeName value:commentColor range:commentRange];
+    
         
         [commentString appendAttributedString:oneCommentString];
     }
+        
     
     return commentString;
 }
