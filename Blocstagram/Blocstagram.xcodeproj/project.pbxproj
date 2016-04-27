@@ -49,6 +49,7 @@
 		B552FCC21CCB23BA00B46F61 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = B552FCC11CCB23BA00B46F61 /* Media.m */; };
 		B552FCC51CCB250B00B46F61 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = B552FCC41CCB250B00B46F61 /* Comment.m */; };
 		B552FCCE1CCB269C00B46F61 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B552FCCD1CCB269C00B46F61 /* DataSource.m */; };
+		B552FCD11CCF30B400B46F61 /* MediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B552FCD01CCF30B400B46F61 /* MediaTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,8 @@
 		B552FCC41CCB250B00B46F61 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		B552FCCC1CCB269C00B46F61 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		B552FCCD1CCB269C00B46F61 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		B552FCCF1CCF30B400B46F61 /* MediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewCell.h; sourceTree = "<group>"; };
+		B552FCD01CCF30B400B46F61 /* MediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,8 @@
 				B552FCC41CCB250B00B46F61 /* Comment.m */,
 				B552FCCC1CCB269C00B46F61 /* DataSource.h */,
 				B552FCCD1CCB269C00B46F61 /* DataSource.m */,
+				B552FCCF1CCF30B400B46F61 /* MediaTableViewCell.h */,
+				B552FCD01CCF30B400B46F61 /* MediaTableViewCell.m */,
 				B552FC091CC87F2000B46F61 /* Supporting Files */,
 			);
 			path = Blocstagram;
@@ -420,6 +425,7 @@
 			files = (
 				B552FCBF1CCB22CB00B46F61 /* User.m in Sources */,
 				B552FCC51CCB250B00B46F61 /* Comment.m in Sources */,
+				B552FCD11CCF30B400B46F61 /* MediaTableViewCell.m in Sources */,
 				B552FCC21CCB23BA00B46F61 /* Media.m in Sources */,
 				B552FCBC1CC8903900B46F61 /* ImagesTableViewController.m in Sources */,
 				B552FCCE1CCB269C00B46F61 /* DataSource.m in Sources */,
